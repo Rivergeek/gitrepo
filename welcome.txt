@@ -1,1 +1,4 @@
-print("welcome")
+
+
+name = input(Введите имя :)
+print("welcome " + name)
