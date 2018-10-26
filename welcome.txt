@@ -1,4 +1,5 @@
-
+﻿
 
 name = input(Введите имя :)
 print("welcome " + name)
+print('hello')
