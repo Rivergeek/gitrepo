@@ -2,6 +2,11 @@ import turtle
 import random
 import math
 
+turtle.speed(0)
+
+phi = 360 / 7
+r = 50
+
 def gotoxy(x, y):
     turtle.penup()
     turtle.goto(x, y)
@@ -15,27 +20,35 @@ def draw_circle(r, color):
 
 
 
-def baraban(x, y):
-    gotoxy(x, y)
+def baraban(xc, yc):
+    gotoxy(xc, yc)
     turtle.circle(80)
-    gotoxy(0, 160)
+    gotoxy(0 + xc, 160 + yc)
     draw_circle(5, 'red')
     phi = 360 / 7
     r = 50
     for i in range(0, 7):
         phi_rad = phi * i * math.pi / 180.0
-        gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+        gotoxy(math.sin(phi_rad) * r + xc, math.cos(phi_rad) * r + 58 + yc)
         draw_circle(22, 'white')
 
-def vrash(x,y):
-    gotoxy(math.sin(phi_rad) * r+x, math.cos(phi_rad) * r + 58+y)
+
+def vrash(xc,yc, start):
+    for i in range(start, random.randrange(10, 22)):
+        phi_rad = phi * i * math.pi / 180.0
+        gotoxy(math.sin(phi_rad) * r+xc, math.cos(phi_rad) * r + 58+yc)
+        draw_circle(22, 'brown')
+        draw_circle(22, 'white')
+
+    gotoxy(math.sin(phi_rad) * r + xc, math.cos(phi_rad) * r + 58 + yc)
     draw_circle(22, 'brown')
-    draw_circle(22, 'white')
+
+    return i % 7
 
 
-turtle.speed(0)
 
-baraban (0, 0)
+
+baraban(100, 100)
 
 
 answer = ''
@@ -44,16 +57,9 @@ start = 0
 while answer != 'N':
     answer = turtle.textinput('Играем?', 'Y/N')
     if answer == 'Y':
-        phi = 360 / 7
-        r = 50
-        for i in range(start, random.randrange(10, 22)):
-            phi_rad = phi * i * math.pi / 180.0
-            vrash(0,0)
+        vrash(100, 100, start)
 
-        gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
-        draw_circle(22, 'brown')
-
-        start = i % 7
+        start = vrash(100, 100, start)
         if start == 0:
             gotoxy(-150, 250)
             turtle.write('Вы проиграли!', font=('Arial', 18, 'normal'))
