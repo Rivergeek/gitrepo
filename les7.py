@@ -14,23 +14,28 @@ def draw_circle(r, color):
     turtle.end_fill()
 
 
-turtle.speed(0)
 
-gotoxy(0, 0)
-turtle.circle(80)
+def baraban(x, y):
+    gotoxy(x, y)
+    turtle.circle(80)
+    gotoxy(0, 160)
+    draw_circle(5, 'red')
+    phi = 360 / 7
+    r = 50
+    for i in range(0, 7):
+        phi_rad = phi * i * math.pi / 180.0
+        gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+        draw_circle(22, 'white')
 
-gotoxy(0, 160)
-
-draw_circle(5, 'red')
-
-phi = 360 / 7
-r = 50
-
-for i in range(0, 7):
-    phi_rad = phi * i * math.pi / 180.0
-    gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+def vrash(x,y):
+    gotoxy(math.sin(phi_rad) * r+x, math.cos(phi_rad) * r + 58+y)
+    draw_circle(22, 'brown')
     draw_circle(22, 'white')
 
+
+turtle.speed(0)
+
+baraban (0, 0)
 
 
 answer = ''
@@ -39,11 +44,11 @@ start = 0
 while answer != 'N':
     answer = turtle.textinput('Играем?', 'Y/N')
     if answer == 'Y':
+        phi = 360 / 7
+        r = 50
         for i in range(start, random.randrange(10, 22)):
             phi_rad = phi * i * math.pi / 180.0
-            gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
-            draw_circle(22, 'brown')
-            draw_circle(22, 'white')
+            vrash(0,0)
 
         gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
         draw_circle(22, 'brown')
