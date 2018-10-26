@@ -26,27 +26,40 @@ draw_circle(5, 'red')
 phi = 360 / 7
 r = 50
 
-
-for i in range(0,7):
+for i in range(0, 7):
     phi_rad = phi * i * math.pi / 180.0
-    gotoxy(math.sin(phi_rad)*r, math.cos(phi_rad)*r + 58)
-    turtle.circle(22)
+    gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+    draw_circle(22, 'white')
 
 
-gotoxy(math.sin(phi_rad)*r, math.cos(phi_rad)*r + 58)
-draw_circle(22, 'brown')
 
+answer = ''
+start = 0
 
-answer = ' '
 while answer != 'N':
-    answer = turtle.textinput('Нарисовать окружность', 'Y/N')
+    answer = turtle.textinput('Играем?', 'Y/N')
     if answer == 'Y':
-        turtle.penup()
-        turtle.goto(random.randrange(-300,300), random.randrange(-300,300))
-        turtle.pendown()
-        turtle.fillcolor(random.random(), random.random(), random.random()) # выбор цвета в системе RGB
-        turtle.begin_fill()                                                  # начать закрашивать
-        turtle.circle(random.randrange(1,100))
-        turtle.end_fill()
+        for i in range(start, random.randrange(10, 22)):
+            phi_rad = phi * i * math.pi / 180.0
+            gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+            draw_circle(22, 'brown')
+            draw_circle(22, 'white')
+
+        gotoxy(math.sin(phi_rad) * r, math.cos(phi_rad) * r + 58)
+        draw_circle(22, 'brown')
+
+        start = i % 7
+        if start == 0:
+            gotoxy(-150, 250)
+            turtle.write('Вы проиграли!', font=('Arial', 18, 'normal'))
+
+
+
+
+        #turtle.penup()
+        #turtle.goto(random.randrange(-300,300), random.randrange(-300,300))
+        # turtle.begin_fill()                                                  # начать закрашивать
+        # turtle.circle(random.randrange(1,100))                        отрисовка случайних кругов
+        #  turtle.end_fill()
     else:
         pass
