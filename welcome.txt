@@ -3,3 +3,4 @@
 name = input(Введите имя :)
 print("welcome " + name)
 print('hello')
+print('Glad to see you')
